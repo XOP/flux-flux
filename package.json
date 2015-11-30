@@ -1,0 +1,45 @@
+{
+  "name": "flux-flux",
+  "version": "0.1.0",
+  "description": "Flux research example",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -r public/*",
+    "src": "cp src/* public",
+    "build": "npm run clean && npm run src && webpack",
+    "dev": "webpack-dev-server --progress --colors --content-base public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XOP/flux-flux.git"
+  },
+  "keywords": [
+    "react",
+    "flux",
+    "research",
+    "example"
+  ],
+  "author": "Evgeny Khoroshilov <stewiekillsloiss@gmail.com> (https://github.com/XOP)",
+  "bugs": {
+    "url": "https://github.com/XOP/flux-flux/issues"
+  },
+  "homepage": "https://github.com/XOP/flux-flux#readme",
+  "dependencies": {
+    "normalize.css": "^3.0.3"
+  },
+  "devDependencies": {
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "eslint": "^1.10.2",
+    "eslint-config-xop": "^1.1.3",
+    "eslint-loader": "^1.1.1",
+    "eslint-plugin-react": "^3.11.1",
+    "imports-loader": "^0.6.5",
+    "json-loader": "^0.5.4",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "webpack": "^1.12.9"
+  }
+}
