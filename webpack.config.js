@@ -37,6 +37,16 @@ const config = {
             }
         ],
         loaders: [
+            // css
+            {
+                test: /\.css$/,
+                loaders: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+
+            // js | jsx
             {
                 test: /\.jsx$|\.js$/,
                 loaders: [
@@ -45,7 +55,12 @@ const config = {
                 ],
                 exclude: /node_modules/
             },
-            {test: /\.json$/, loaders: ['json-loader']}
+
+            // json
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
+            }
         ]
     },
 
