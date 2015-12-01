@@ -1,27 +1,46 @@
 const webpack = require('webpack');
 const path = require('path');
+const extractTextPlugin = require('extract-text-webpack-plugin');
 
 const srcPath = path.join(__dirname, './assets');
+const production = process.env.NODE_ENV === 'production';
+
+// postcss plugins
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const Browsers = ['last 2 versions'];
+
+const postCssPlugins = [
+    autoprefixer({browsers: Browsers})
+];
+
+if (production) {
+    postCssPlugins.push(cssnano());
+}
 
 const config = {
     //addVendor: function (name, path) {
     //    this.resolve.alias[name] = path;
     //    this.module.noParse.push(new RegExp(path));
     //},
+
     entry: [
         path.join(srcPath, 'index.js')
     ],
+
     output: {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js',
         publicPath: '/'
     },
+
     resolve: {
         root: srcPath,
         extensions: ['', '.js', '.jsx', '.json', '.html', '.scss'],
-        modulesDirectories: ['node_modules', 'assets'],
+        modulesDirectories: ['node_modules', 'assets', 'assets/app', 'assets/css'],
         alias: {}
     },
+
     module: {
         noParse: [],
         preLoaders: [
@@ -37,13 +56,10 @@ const config = {
             }
         ],
         loaders: [
-            // css
+            // css | scss
             {
-                test: /\.css$/,
-                loaders: [
-                    'style-loader',
-                    'css-loader'
-                ]
+                test: /\.css$|\.scss$/,
+                loader: extractTextPlugin.extract('style-loader', 'css!postcss!sass')
             },
 
             // js | jsx
@@ -63,6 +79,12 @@ const config = {
             }
         ]
     },
+
+    plugins: [
+        new extractTextPlugin('bundle.css')
+    ],
+
+    postcss: postCssPlugins,
 
     debug: true
 };

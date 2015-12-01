@@ -6,18 +6,23 @@
 // import utils from 'utils';
 
 import 'normalize.css/normalize.css';
-import './app.css';
+import './app.scss';
+
+import Button from 'button/button';
 
 module.exports = function() {
 
-    const mainContainer = document.querySelector('#main');
+    const mainContainer = document.querySelector('#app');
 
     ReactDOM.render(
-        <div>
-            <h1>Flux-Flux</h1>
-            <strong>
-                inlined styles
-            </strong>
+        <div className="main">
+            <div className="container">
+                <h1 className="heading">Flux-Flux</h1>
+
+                <div className="main">
+                    <Button text="Start" key="1" />
+                </div>
+            </div>
         </div>,
 
         mainContainer

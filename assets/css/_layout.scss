@@ -1,0 +1,56 @@
+/* Layout
+---------------------------------------------------------------------------------- */
+
+/* Body
+-------------------------------------------------- */
+
+body {
+    display: flex;
+    flex-direction: column;
+    }
+
+/* /Body */
+
+
+/* Root
+-------------------------------------------------- */
+
+.root {
+    padding: $grid-2 0 0;
+
+    flex-grow: 1;
+    display: flex;
+    width: 100%;
+    }
+
+/* /Root */
+
+
+/* Common wrapper
+-------------------------------------------------- */
+
+.container {
+    position: relative;
+    box-sizing: border-box;
+
+    padding: 0 $grid-4;
+
+    margin: 0 auto;
+    max-width: $width-normal;
+    }
+
+/* /Common wrapper */
+
+
+/* Main
+-------------------------------------------------- */
+
+.main {
+    flex: 1 1 auto;
+    align-self: center;
+    }
+
+/* /Main */
+
+/* /Layout
+---------------------------------------------------------------------------------- */
