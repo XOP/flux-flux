@@ -1,6 +1,6 @@
 {
   "name": "flux-flux",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Flux research example",
   "main": "assets/app/index.js",
   "repository": {
@@ -11,7 +11,8 @@
     "react",
     "flux",
     "research",
-    "example"
+    "example",
+    "webpack"
   ],
   "author": "Evgeny Khoroshilov <stewiekillsloiss@gmail.com> (https://github.com/XOP)",
   "bugs": {
@@ -23,12 +24,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -r public/*",
-    "src": "cp src/* public",
-    "base": "npm run clean && npm run src",
-    "build": "npm run base && NODE_ENV=production webpack",
-    "serve": "webpack-dev-server --content-base public",
-    "watch": "npm run base && webpack --watch"
+    "cleanup": "rm -rf public && mkdir public",
+    "favicon": "cp favicon.ico public",
+    "build": "npm run cleanup && npm run favicon && NODE_ENV=production webpack -p",
+    "serve": "webpack-dev-server --content-base public --port $npm_package_config_port"
   },
   "dependencies": {
     "normalize.css": "^3.0.3",
@@ -56,6 +55,7 @@
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.0"
+    "webpack-dev-server": "^1.14.0",
+    "webpack-merge": "^0.3.2"
   }
 }

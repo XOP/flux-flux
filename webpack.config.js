@@ -1,11 +1,20 @@
+'use strict';
+
 const webpack = require('webpack');
 const path = require('path');
+
+// plugins
 const extractTextPlugin = require('extract-text-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 
+// local helpers
+const merge = require('webpack-merge');
+
+// vars
 const srcPath = path.join(__dirname, './assets');
 const production = process.env.NODE_ENV === 'production';
 
+//
 // postcss plugins
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
@@ -16,14 +25,13 @@ const postCssPlugins = [
 ];
 
 if (production) {
+    // minifying resulting css
     postCssPlugins.push(cssnano());
 }
 
-const config = {
-    //addVendor: function (name, path) {
-    //    this.resolve.alias[name] = path;
-    //    this.module.noParse.push(new RegExp(path));
-    //},
+//
+// common config
+let config = {
 
     entry: [
         path.join(srcPath, 'index.js')
@@ -44,6 +52,7 @@ const config = {
 
     module: {
         noParse: [],
+
         preLoaders: [
             {
                 test: /\.jsx$|\.js$/,
@@ -56,13 +65,8 @@ const config = {
                 loader: 'eslint-loader'
             }
         ],
+
         loaders: [
-            // css | scss
-            {
-                test: /\.css$|\.scss$/,
-                loaders: ['style', 'css', 'postcss', 'sass']
-                //loader: extractTextPlugin.extract('style-loader', 'css!postcss!sass')
-            },
 
             // js | jsx
             {
@@ -93,30 +97,78 @@ const config = {
         ]
     },
 
-    devServer: {
-        historyApiFallback: true,
-        hot: true,
-        inline: true,
-        progress: true,
+    plugins: [],
 
-        // display only errors to reduce the amount of output
-        stats: 'errors-only',
-
-        port: 4000
-    },
-
-    plugins: [
-        //new extractTextPlugin('bundle.css'),
-        new htmlWebpackPlugin({
-            title: 'Flux-Flux',
-            template: 'src/index.html'
-        }),
-        new webpack.HotModuleReplacementPlugin()
-    ],
-
-    postcss: postCssPlugins,
-
-    debug: true
+    postcss: postCssPlugins
 };
+
+//
+// production config
+if (production) {
+    console.info('[WEBPACK] operating in production mode');
+
+    config = merge(config, {
+        module: {
+            loaders: [
+                {
+                    test: /\.css$|\.scss$/,
+                    loader: extractTextPlugin.extract('style-loader', 'css!postcss!sass')
+                }
+            ]
+        },
+
+        plugins: [
+            new htmlWebpackPlugin({
+                title: 'Flux-Flux',
+                favicon: './favicon.ico',
+                template: './src/index.html',
+                minify: {
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    removeAttributeQuotes: true,
+                    keepClosingSlash: true,
+                    removeEmptyElements: false
+                }
+            }),
+            new extractTextPlugin('bundle.css')
+        ]
+    });
+}
+
+//
+// development config extras
+if (!production) {
+    console.info('[WEBPACK] operating in development mode');
+
+    config = merge(config, {
+        module: {
+            loaders: [
+                {
+                    test: /\.css$|\.scss$/,
+                    loaders: ['style', 'css', 'postcss', 'sass']
+                }
+            ]
+        },
+
+        devServer: {
+            historyApiFallback: true,
+            hot: true,
+            inline: true,
+            progress: true,
+            stats: 'errors-only'
+        },
+
+        plugins: [
+            new htmlWebpackPlugin({
+                title: 'Flux-Flux',
+                favicon: './favicon.ico',
+                template: './src/index.html'
+            }),
+            new webpack.HotModuleReplacementPlugin()
+        ],
+
+        debug: true
+    });
+}
 
 module.exports = config;

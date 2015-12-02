@@ -4,8 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>{%= o.htmlWebpackPlugin.options.title %}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <!--<link rel="icon" type="image/x-icon" href="favicon.ico">-->
-    <!--<link rel="stylesheet" href="bundle.css"/>-->
+    {% if (o.webpackConfig.debug != true) { %}
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="stylesheet" href="bundle.css"/>
+    {% } %}
 </head>
 <body>
 
@@ -13,7 +15,6 @@
     <div class="main" id="app">
         Loading...
     </div>
-
 </div>
 
 <script src="bundle.js"></script>
