@@ -1,10 +1,17 @@
+/**
+ * Button
+ *
+ */
+
 import './button.scss';
 
 module.exports = React.createClass({
 
+    displayName: 'Button',
+
     propTypes: {
-        text: React.PropTypes.string,
-        key: React.PropTypes.number
+        key: React.PropTypes.number,
+        text: React.PropTypes.string
     },
 
     getInitialState: function() {
@@ -13,7 +20,10 @@ module.exports = React.createClass({
 
     render: function() {
         return (
-            <button className="button" key={this.props.key}>
+            <button
+                className="button"
+                key={this.props.key}
+                >
                 {this.props.text}
             </button>
         );

@@ -1,5 +1,3 @@
-@import "../../css/variables";
-
 /* Button
 ---------------------------------------------------------------------------------- */
 
@@ -13,6 +11,8 @@ cssg
 
 /* Vars
 -------------------------------------------------- */
+
+@import "../../css/variables";
 
 $button-top: #1cdd0b;
 $button-bot: #2cb11f;
@@ -70,20 +70,23 @@ $button-rad: $rad-normal;
         }
 
     &:active {
-        transform: translateY(1px);
+        transform: translateY(1px) scale(.95);
         box-shadow: none;
         }
+    }
 
-    //a#{&}, span#{&}, div#{&} {
-    //    display: inline-block;
-    //    vertical-align: bottom;
-    //    text-decoration: none;
-    //    }
-    //
-    //input#{&},
-    //button#{&} {
-    //    -webkit-appearance: none; // remove OS-native styling
-    //    }
+a.button,
+span.button,
+div.button {
+    display: inline-block;
+    vertical-align: bottom;
+
+    text-decoration: none;
+    }
+
+input.button,
+button.button {
+    -webkit-appearance: none; // remove OS-native styling
     }
 
 /* /Button

@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const extractTextPlugin = require('extract-text-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 const srcPath = path.join(__dirname, './assets');
 const production = process.env.NODE_ENV === 'production';
@@ -59,7 +60,8 @@ const config = {
             // css | scss
             {
                 test: /\.css$|\.scss$/,
-                loader: extractTextPlugin.extract('style-loader', 'css!postcss!sass')
+                loaders: ['style', 'css', 'postcss', 'sass']
+                //loader: extractTextPlugin.extract('style-loader', 'css!postcss!sass')
             },
 
             // js | jsx
@@ -72,6 +74,17 @@ const config = {
                 exclude: /node_modules/
             },
 
+            // custom modules
+            {
+                test: /\.js$/,
+                loaders: [
+                    'babel-loader?' + JSON.stringify({presets: ['es2015']})
+                ],
+                include: [
+                    /node_modules\/xop-module-utils/
+                ]
+            },
+
             // json
             {
                 test: /\.json$/,
@@ -80,8 +93,25 @@ const config = {
         ]
     },
 
+    devServer: {
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        progress: true,
+
+        // display only errors to reduce the amount of output
+        stats: 'errors-only',
+
+        port: 4000
+    },
+
     plugins: [
-        new extractTextPlugin('bundle.css')
+        //new extractTextPlugin('bundle.css'),
+        new htmlWebpackPlugin({
+            title: 'Flux-Flux',
+            template: 'src/index.html'
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
 
     postcss: postCssPlugins,

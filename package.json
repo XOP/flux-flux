@@ -27,11 +27,14 @@
     "src": "cp src/* public",
     "base": "npm run clean && npm run src",
     "build": "npm run base && NODE_ENV=production webpack",
-    "serve": "webpack-dev-server --hot --inline --progress --colors --content-base public --port $npm_package_config_port",
+    "serve": "webpack-dev-server --content-base public",
     "watch": "npm run base && webpack --watch"
   },
   "dependencies": {
-    "normalize.css": "^3.0.3"
+    "normalize.css": "^3.0.3",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "xop-module-utils": "^0.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.1.2",
@@ -45,14 +48,14 @@
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.11.1",
     "extract-text-webpack-plugin": "^0.9.1",
+    "html-webpack-plugin": "^1.7.0",
     "imports-loader": "^0.6.5",
     "json-loader": "^0.5.4",
     "node-sass": "^3.4.2",
     "postcss-loader": "^0.8.0",
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.9"
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
   }
 }
