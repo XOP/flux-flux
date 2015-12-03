@@ -1,0 +1,76 @@
+/* Product
+---------------------------------------------------------------------------------- */
+
+/*
+cssg
+
+	product
+	    product_img
+	        img . product_pic
+
+        product_data
+            product_name
+            product_quant
+            product_add
+
+*/
+
+
+/* Vars
+-------------------------------------------------- */
+
+@import "../../css/variables";
+
+/* /Vars */
+
+
+
+.product {
+    align-self: flex-start;
+
+    margin: $grid;
+    padding: $grid;
+
+    width: 200px;
+
+    font-size: $fs-s;
+    user-select: none;
+    box-shadow: $sh-light, inset 0 0 0 1px $c-lighter;
+    border-radius: $rad-normal;
+    }
+
+.product_img {
+    margin-bottom: $grid;
+    }
+
+.product_data {
+    display: flex;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    }
+
+.product_name {
+    @include trunc();
+
+    flex: 1 0 60%;
+    }
+
+.product_quant {
+    flex: 0 1 auto;
+
+    padding: 0 $grid;
+    text-align: center;
+
+    &:empty {
+        display: none;
+        }
+    }
+
+.product_add {
+
+    }
+
+/* /Product
+---------------------------------------------------------------------------------- */

@@ -1,0 +1,59 @@
+/* Item
+---------------------------------------------------------------------------------- */
+
+/*
+cssg
+
+	item
+		item_name
+		item_quant
+		item_del
+
+*/
+
+
+/* Vars
+-------------------------------------------------- */
+
+@import "../../css/variables";
+
+/* /Vars */
+
+
+
+.item {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	padding: $grid-2 $grid;
+	font-size: $fs-s;
+
+	&:last-of-type {
+		border-bottom: 1px solid $c-lighter;
+		}
+
+	& + & {
+		border-top: 1px solid $c-lighter;
+		}
+	}
+
+.item_name {
+	@include trunc();
+
+	flex: 1 0 60%;
+	}
+
+.item_quant {
+	flex: 0 1 auto;
+
+	padding: 0 $grid;
+	text-align: center;
+	}
+
+.item_del {
+
+	}
+
+/* /Item
+---------------------------------------------------------------------------------- */

@@ -16,7 +16,7 @@ body {
 -------------------------------------------------- */
 
 .root {
-    padding: $grid-2 0 0;
+    padding: 0;
 
     flex-grow: 1;
     display: flex;
@@ -46,11 +46,45 @@ body {
 -------------------------------------------------- */
 
 .main {
-    flex: 1 1 auto;
-    align-self: center;
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: nowrap;
+    flex-direction: row;
     }
 
 /* /Main */
+
+
+/* Store
+-------------------------------------------------- */
+
+.store {
+    display: flex;
+    flex: 1 0 65%;
+
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    }
+
+/* /Store */
+
+
+/* Cart
+-------------------------------------------------- */
+
+.cart {
+    display: flex;
+    flex: 1 0 35%;
+
+    flex-wrap: nowrap;
+    flex-direction: column;
+
+    background: $c-lightest;
+    box-shadow: $sh-normal;
+    }
+
+/* /Cart */
 
 /* /Layout
 ---------------------------------------------------------------------------------- */

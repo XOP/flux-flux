@@ -11,7 +11,8 @@ module.exports = React.createClass({
 
     propTypes: {
         key: React.PropTypes.number,
-        text: React.PropTypes.string
+        text: React.PropTypes.string,
+        type: React.PropTypes.string
     },
 
     getInitialState: function() {
@@ -19,9 +20,16 @@ module.exports = React.createClass({
     },
 
     render: function() {
+        let klass = 'button';
+
+        if (this.props.type) {
+            klass += ' ' + klass + '__';
+            klass += this.props.type;
+        }
+
         return (
             <button
-                className="button"
+                className={klass}
                 key={this.props.key}
                 >
                 {this.props.text}

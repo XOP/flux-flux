@@ -22,9 +22,14 @@ $button-height: $fs-s * 2;
 $button-width: $button-height;
 $button-rad: $rad-normal;
 
+$button-height-mini: $fs-s * 1.5;
+$button-width-mini: $button-height-mini;
+
 /* /Vars */
 
 
+/* Main
+-------------------------------------------------- */
 
 .button {
     position: relative;
@@ -88,6 +93,22 @@ input.button,
 button.button {
     -webkit-appearance: none; // remove OS-native styling
     }
+
+/* /Main */
+
+
+/* Mini
+-------------------------------------------------- */
+
+.button__mini {
+    padding: 0;
+    min-width: $button-width-mini;
+    height: $button-height-mini;
+
+    line-height: $button-height-mini;
+    }
+
+/* /Mini */
 
 /* /Button
 ---------------------------------------------------------------------------------- */
