@@ -59,12 +59,7 @@ body {
 -------------------------------------------------- */
 
 .store {
-    display: flex;
     flex: 1 0 65%;
-
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: flex-start;
     }
 
 /* /Store */
@@ -74,14 +69,7 @@ body {
 -------------------------------------------------- */
 
 .cart {
-    display: flex;
     flex: 1 0 35%;
-
-    flex-wrap: nowrap;
-    flex-direction: column;
-
-    background: $c-lightest;
-    box-shadow: $sh-normal;
     }
 
 /* /Cart */

@@ -5,13 +5,17 @@
 
 import './product.scss';
 
-import Button from 'button/button';
+const AppDispatcher = require('flux').Dispatcher;
+
+import Button from 'components/button/button';
+import AppActions from 'actions/AppActions';
 
 module.exports = React.createClass({
 
     displayName: 'Product',
 
     propTypes: {
+        id: React.PropTypes.string,
         img: React.PropTypes.string,
         key: React.PropTypes.number,
         name: React.PropTypes.string
@@ -21,6 +25,14 @@ module.exports = React.createClass({
         return {
             quant: 0
         };
+    },
+
+    addToCart: function() {
+        // todo: add to cart
+        // const id = this.props.id;
+
+        // AppActions.addToCart(id);
+        AppActions.updateCartVisible(true);
     },
 
     render: function() {
@@ -43,6 +55,7 @@ module.exports = React.createClass({
                     <span className="product_quant">{this.state.quant}</span>
                     <span className="product_add">
                         <Button
+                            onClick={this.addToCart}
                             text="+"
                             type="mini"
                             />
@@ -51,5 +64,4 @@ module.exports = React.createClass({
             </div>
         );
     }
-
 });
