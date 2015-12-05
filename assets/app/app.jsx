@@ -6,8 +6,6 @@
 import 'normalize.css/normalize.css';
 import './app.scss';
 
-import * as utils from 'xop-module-utils';
-
 import Store from 'components/store/store';
 import ProductStore from 'stores/ProductStore';
 
@@ -31,20 +29,39 @@ const _items = {
     }
 };
 
-module.exports = function() {
+module.exports = React.createClass({
 
-    const mainContainer = utils.find('#app');
+    getInitialState: function() {
+        // getState
+        return {
 
-    ReactDOM.render(
-        <div className="main">
-            <Store
-                products={_products}
-                />
-            <Cart
-                items={_items}
-                />
-        </div>,
+        };
+    },
 
-        mainContainer
-    );
-};
+    componentDidMount: function() {
+        ProductStore.addChangeListener(this._onChange);
+        CartStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount: function() {
+        ProductStore.removeChangeListener(this._onChange);
+        CartStore.removeChangeListener(this._onChange);
+    },
+
+    render: function() {
+        return (
+            <div className="main">
+                <Store
+                    products={_products}
+                    />
+                <Cart
+                    items={_items}
+                    />
+            </div>
+        );
+    },
+
+    _onChange: function() {
+        // this.setState
+    }
+});

@@ -3,8 +3,11 @@
  *
  */
 
-import app from 'app/app';
+import * as utils from 'xop-module-utils';
 
-app();
+import Application from 'app/app';
 
-export default app;
+ReactDOM.render(
+    <Application />,
+    utils.find('#app')
+);
