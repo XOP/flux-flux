@@ -5,10 +5,26 @@
 
 const EventEmitter = require('events');
 
+import extend from 'lodash/object/extend';
+
 import AppDispatcher from 'dispatcher/AppDispatcher';
 import AppConstants from 'actions/AppConstants.js';
 
-const ProductStore = {};
+
+const ProductStore = extend({}, EventEmitter.prototype, {
+
+    emitChange() {
+        this.emit('change');
+    },
+
+    addChangeListener: function(cb) {
+        this.on('change', cb);
+    },
+
+    removeChangeListener: function(cb) {
+        this.removeListener('change', cb);
+    }
+});
 
 AppDispatcher.register(function(payload) {
     const action = payload.action;
@@ -22,6 +38,8 @@ AppDispatcher.register(function(payload) {
         default:
             return true;
     }
+
+    ProductStore.emitChange();
 
     return true;
 });

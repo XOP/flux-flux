@@ -31,6 +31,8 @@ const _items = {
 
 module.exports = React.createClass({
 
+    displayName: 'Application',
+
     getInitialState: function() {
         // getState
         return {
@@ -48,6 +50,11 @@ module.exports = React.createClass({
         CartStore.removeChangeListener(this._onChange);
     },
 
+    _onChange: function() {
+        // this.setState
+        console.log('change occured');
+    },
+
     render: function() {
         return (
             <div className="main">
@@ -59,9 +66,5 @@ module.exports = React.createClass({
                     />
             </div>
         );
-    },
-
-    _onChange: function() {
-        // this.setState
     }
 });

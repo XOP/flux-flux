@@ -5,6 +5,7 @@
 
 const keyMirror = require('fbjs/lib/keyMirror'); // fixme: weak dependecy
 
+
 module.exports = keyMirror({
     CART_ADD: null,
     CART_REMOVE: null,

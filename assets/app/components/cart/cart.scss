@@ -19,13 +19,17 @@ cssg
 
 
 .cart {
-	display: flex;
+	display: none;
 
 	flex-wrap: nowrap;
 	flex-direction: column;
 
 	background: $c-lightest;
 	box-shadow: $sh-normal;
+
+	&.__active {
+		display: flex;
+		}
 	}
 
 /* /Cart

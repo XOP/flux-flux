@@ -7,6 +7,7 @@ import './item.scss';
 
 import Button from 'components/button/button';
 
+
 module.exports = React.createClass({
 
     displayName: 'Item',

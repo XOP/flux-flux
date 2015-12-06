@@ -10,6 +10,7 @@ const AppDispatcher = require('flux').Dispatcher;
 import Product from 'components/product/product';
 import AppActions from 'actions/AppActions';
 
+
 module.exports = React.createClass({
 
     displayName: 'Store',

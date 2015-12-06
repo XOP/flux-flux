@@ -10,6 +10,7 @@ const AppDispatcher = require('flux').Dispatcher;
 import Button from 'components/button/button';
 import AppActions from 'actions/AppActions';
 
+
 module.exports = React.createClass({
 
     displayName: 'Product',
@@ -26,6 +27,16 @@ module.exports = React.createClass({
             quant: 0
         };
     },
+
+
+    // fixme: test flux
+    showCart: function() {
+        AppActions.updateCartVisible(true);
+    },
+    hideCart: function() {
+        AppActions.updateCartVisible(false);
+    },
+
 
     addToCart: function() {
         // todo: add to cart
@@ -45,6 +56,7 @@ module.exports = React.createClass({
                     <img
                         alt={this.props.name}
                         className="product_pic"
+                        onClick={this.hideCart} // fixme test
                         src={this.props.img}
                         />
                 </div>
@@ -55,7 +67,7 @@ module.exports = React.createClass({
                     <span className="product_quant">{this.state.quant}</span>
                     <span className="product_add">
                         <Button
-                            onClick={this.addToCart}
+                            onClick={this.showCart} // fixme test
                             text="+"
                             type="mini"
                             />

@@ -5,8 +5,11 @@
 
 const EventEmitter = require('events');
 
+import extend from 'lodash/object/extend';
+
 import AppDispatcher from 'dispatcher/AppDispatcher';
 import AppConstants from 'actions/AppConstants.js';
+
 
 let _products = {};
 let _cartVisible = false;
@@ -19,11 +22,24 @@ function setCartVisible(cartVisible) {
     _cartVisible = cartVisible;
 }
 
-const CartStore = {
+const CartStore = extend({}, EventEmitter.prototype, {
+
+    emitChange() {
+        this.emit('change');
+    },
+
+    addChangeListener: function(cb) {
+        this.on('change', cb);
+    },
+
+    removeChangeListener: function(cb) {
+        this.removeListener('change', cb);
+    },
+
     getCartVisible: function() {
         return _cartVisible;
     }
-};
+});
 
 AppDispatcher.register(function(payload) {
     const action = payload.action;
@@ -42,8 +58,7 @@ AppDispatcher.register(function(payload) {
             return true;
     }
 
-    // todo: event wrapper
-    EventEmitter.emit('change');
+    CartStore.emitChange();
 
     return true;
 });
