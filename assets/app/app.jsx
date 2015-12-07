@@ -12,6 +12,8 @@ import ProductStore from 'stores/ProductStore';
 import Cart from 'components/cart/cart';
 import CartStore from 'stores/CartStore';
 
+
+// fixme demo objects
 const _products = {
     1: {
         name: 'Green Beer',
@@ -23,21 +25,31 @@ const _products = {
     }
 };
 
+// fixme demo objects
 const _items = {
     1: {
         name: 'Green Beer'
     }
 };
 
+/**
+ * Application state wrapper
+ * @returns Object
+ */
+function getAppState() {
+    return {
+        products: _products,
+        items: _items,
+        cartVisible: CartStore.getCartVisible()
+    };
+}
+
 module.exports = React.createClass({
 
     displayName: 'Application',
 
     getInitialState: function() {
-        // getState
-        return {
-
-        };
+        return getAppState();
     },
 
     componentDidMount: function() {
@@ -51,18 +63,18 @@ module.exports = React.createClass({
     },
 
     _onChange: function() {
-        // this.setState
-        console.log('change occured');
+        this.setState(getAppState());
     },
 
     render: function() {
         return (
             <div className="main">
                 <Store
-                    products={_products}
+                    products={this.state.products}
                     />
                 <Cart
-                    items={_items}
+                    items={this.state.items}
+                    isVisible={this.state.cartVisible}
                     />
             </div>
         );

@@ -11,6 +11,8 @@ import AppDispatcher from 'dispatcher/AppDispatcher';
 import AppConstants from 'actions/AppConstants.js';
 
 
+let _products = {};
+
 const ProductStore = extend({}, EventEmitter.prototype, {
 
     emitChange() {

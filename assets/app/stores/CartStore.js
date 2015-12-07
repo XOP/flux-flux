@@ -11,7 +11,7 @@ import AppDispatcher from 'dispatcher/AppDispatcher';
 import AppConstants from 'actions/AppConstants.js';
 
 
-let _products = {};
+let _items = {};
 let _cartVisible = false;
 
 /**

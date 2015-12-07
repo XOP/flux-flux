@@ -33,9 +33,6 @@ module.exports = React.createClass({
     showCart: function() {
         AppActions.updateCartVisible(true);
     },
-    hideCart: function() {
-        AppActions.updateCartVisible(false);
-    },
 
 
     addToCart: function() {
@@ -56,7 +53,6 @@ module.exports = React.createClass({
                     <img
                         alt={this.props.name}
                         className="product_pic"
-                        onClick={this.hideCart} // fixme test
                         src={this.props.img}
                         />
                 </div>
