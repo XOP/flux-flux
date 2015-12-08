@@ -17,26 +17,20 @@ module.exports = React.createClass({
         id: React.PropTypes.string,
         img: React.PropTypes.string,
         key: React.PropTypes.number,
-        name: React.PropTypes.string
+        name: React.PropTypes.string,
+        quant: React.PropTypes.number
     },
 
     getInitialState: function() {
         return {
-            quant: 0
         };
     },
 
     addToCart: function() {
         const _id = this.props.id;
-        const _quant = this.state.quant + 1;
         const _item = {
-            name: this.props.name,
-            quant: _quant
+            name: this.props.name
         };
-
-        this.setState({
-            quant: _quant
-        });
 
         // add product to cart
         AppActions.addToCart(_id, _item);
@@ -62,7 +56,7 @@ module.exports = React.createClass({
                     <span className="product_name">
                         {this.props.name}
                     </span>
-                    <span className="product_quant">{this.state.quant}</span>
+                    <span className="product_quant">{this.props.quant ? this.props.quant : ''}</span>
                     <span className="product_add">
                         <Button
                             label="+"

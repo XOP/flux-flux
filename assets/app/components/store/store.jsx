@@ -30,10 +30,11 @@ module.exports = React.createClass({
                 {Object.keys(products).map(function(product) {
                     return (
                         <Product
-                            id={products[product].id}
+                            id={product}
                             img={products[product].img}
                             key={product}
                             name={products[product].name}
+                            quant={products[product].quant}
                             />
                     );
                 })}

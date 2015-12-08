@@ -6,6 +6,7 @@
 import './item.scss';
 
 import Button from 'components/button/button';
+import AppActions from 'actions/AppActions';
 
 
 module.exports = React.createClass({
@@ -20,14 +21,11 @@ module.exports = React.createClass({
     },
 
     getInitialState: function() {
-        return {
-
-        };
+        return {};
     },
 
     removeFromCart: function() {
-        // todo remove from cart
-        // AppActions.removeFromCart(this.props.id);
+        AppActions.removeFromCart(this.props.id);
     },
 
     render: function() {
