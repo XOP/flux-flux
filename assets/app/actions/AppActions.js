@@ -18,10 +18,11 @@ const AppActions = {
     },
 
     // Add item to cart
-    addToCart: function(id) {
+    addToCart: function(id, item) {
         AppDispatcher.handleAction({
             type: AppConstants.CART_ADD,
-            id: id
+            id: id,
+            item: item
         });
     },
 

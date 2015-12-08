@@ -3,8 +3,7 @@
  *
  */
 
-const EventEmitter = require('events');
-
+import EventEmitter from 'events';
 import extend from 'lodash/object/extend';
 
 import AppDispatcher from 'dispatcher/AppDispatcher';
@@ -22,6 +21,19 @@ function setCartVisible(cartVisible) {
     _cartVisible = cartVisible;
 }
 
+/**
+ * Add item to cart or update quantity
+ * @param id
+ * @param item
+ */
+function addItem(id, item) {
+    if (id in _items) {
+        _items[id].quant += 1;
+    } else {
+        _items[id] = item;
+    }
+}
+
 const CartStore = extend({}, EventEmitter.prototype, {
 
     emitChange() {
@@ -36,6 +48,10 @@ const CartStore = extend({}, EventEmitter.prototype, {
         this.removeListener('change', cb);
     },
 
+    getCartItems: function() {
+        return _items;
+    },
+
     getCartVisible: function() {
         return _cartVisible;
     }
@@ -46,8 +62,7 @@ AppDispatcher.register(function(payload) {
 
     switch (action.type) {
         case AppConstants.CART_ADD:
-
-            // todo: add to cart
+            addItem(action.id, action.item);
             break;
 
         case AppConstants.CART_VISIBLE:

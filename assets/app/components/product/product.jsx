@@ -5,8 +5,6 @@
 
 import './product.scss';
 
-const AppDispatcher = require('flux').Dispatcher;
-
 import Button from 'components/button/button';
 import AppActions from 'actions/AppActions';
 
@@ -28,18 +26,22 @@ module.exports = React.createClass({
         };
     },
 
-
-    // fixme: test flux
-    showCart: function() {
-        AppActions.updateCartVisible(true);
-    },
-
-
     addToCart: function() {
-        // todo: add to cart
-        // const id = this.props.id;
+        const _id = this.props.id;
+        const _quant = this.state.quant + 1;
+        const _item = {
+            name: this.props.name,
+            quant: _quant
+        };
 
-        // AppActions.addToCart(id);
+        this.setState({
+            quant: _quant
+        });
+
+        // add product to cart
+        AppActions.addToCart(_id, _item);
+
+        // show cart
         AppActions.updateCartVisible(true);
     },
 
@@ -63,8 +65,8 @@ module.exports = React.createClass({
                     <span className="product_quant">{this.state.quant}</span>
                     <span className="product_add">
                         <Button
-                            onClick={this.showCart} // fixme test
-                            text="+"
+                            label="+"
+                            onClick={this.addToCart}
                             type="mini"
                             />
                     </span>

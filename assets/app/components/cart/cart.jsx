@@ -5,8 +5,6 @@
 
 import './cart.scss';
 
-const AppDispatcher = require('flux').Dispatcher;
-
 import Item from 'components/item/item';
 import AppActions from 'actions/AppActions';
 
@@ -43,6 +41,7 @@ module.exports = React.createClass({
                         <Item
                             key={item}
                             name={items[item].name}
+                            quant={items[item].quant}
                             />
                     );
                 })}

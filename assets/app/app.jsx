@@ -13,33 +13,14 @@ import Cart from 'components/cart/cart';
 import CartStore from 'stores/CartStore';
 
 
-// fixme demo objects
-const _products = {
-    1: {
-        name: 'Green Beer',
-        img: 'http://placehold.it/200/cc9900/ffffff'
-    },
-    2: {
-        name: 'Position Fixed',
-        img: 'http://placehold.it/200/aa6600/ffffff'
-    }
-};
-
-// fixme demo objects
-const _items = {
-    1: {
-        name: 'Green Beer'
-    }
-};
-
 /**
  * Application state wrapper
  * @returns Object
  */
 function getAppState() {
     return {
-        products: _products,
-        items: _items,
+        products: ProductStore.getProducts(),
+        items: CartStore.getCartItems(),
         cartVisible: CartStore.getCartVisible()
     };
 }
@@ -73,8 +54,8 @@ module.exports = React.createClass({
                     products={this.state.products}
                     />
                 <Cart
-                    items={this.state.items}
                     isVisible={this.state.cartVisible}
+                    items={this.state.items}
                     />
             </div>
         );

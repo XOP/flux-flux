@@ -12,8 +12,8 @@ module.exports = React.createClass({
 
     propTypes: {
         key: React.PropTypes.number,
+        label: React.PropTypes.string,
         onClick: React.PropTypes.func,
-        text: React.PropTypes.string,
         type: React.PropTypes.string
     },
 
@@ -35,7 +35,7 @@ module.exports = React.createClass({
                 key={this.props.key}
                 onClick={this.props.onClick}
                 >
-                {this.props.text}
+                {this.props.label}
             </button>
         );
     }

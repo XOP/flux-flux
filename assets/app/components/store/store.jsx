@@ -5,10 +5,7 @@
 
 import './store.scss';
 
-const AppDispatcher = require('flux').Dispatcher;
-
 import Product from 'components/product/product';
-import AppActions from 'actions/AppActions';
 
 
 module.exports = React.createClass({
@@ -33,13 +30,13 @@ module.exports = React.createClass({
                 {Object.keys(products).map(function(product) {
                     return (
                         <Product
+                            id={products[product].id}
                             img={products[product].img}
                             key={product}
                             name={products[product].name}
                             />
                     );
                 })}
-
             </div>
         );
     }

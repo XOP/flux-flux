@@ -13,15 +13,21 @@ module.exports = React.createClass({
     displayName: 'Item',
 
     propTypes: {
-        img: React.PropTypes.string,
+        id: React.PropTypes.string,
         key: React.PropTypes.number,
-        name: React.PropTypes.string
+        name: React.PropTypes.string,
+        quant: React.PropTypes.number
     },
 
     getInitialState: function() {
         return {
-            val: 1
+
         };
+    },
+
+    removeFromCart: function() {
+        // todo remove from cart
+        // AppActions.removeFromCart(this.props.id);
     },
 
     render: function() {
@@ -31,10 +37,11 @@ module.exports = React.createClass({
                 key={this.props.key}
                 >
                 <span className="item_name">{this.props.name}</span>
-                <span className="item_quant">{this.state.val}</span>
+                <span className="item_quant">{this.props.quant}</span>
                 <span className="item_del">
                     <Button
-                        text="–"
+                        label="–"
+                        onClick={this.removeFromCart}
                         type="mini"
                         />
                 </span>
