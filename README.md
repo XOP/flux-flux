@@ -4,7 +4,10 @@
 
 ## Tech stack
 
-**todo**
+Application is build with [Webpack](https://webpack.github.io/) as the main bundle tool.
+CSS building is integrated in bundle process and is handled by [PostCSS](https://github.com/postcss/postcss).
+
+There are two modes of processing - development (devServer) and production (CSS nano, HTML minifying).
 
 
 ## Install
