@@ -6,7 +6,7 @@
 import EventEmitter from 'events';
 import extend from 'lodash/object/extend';
 
-import idGenerator from 'idGenerator';
+import idGenerator from 'utils/idGenerator';
 
 import AppDispatcher from 'dispatcher/AppDispatcher';
 import AppConstants from 'actions/AppConstants.js';
