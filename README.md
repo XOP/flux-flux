@@ -43,3 +43,6 @@ Helpful sources of knowledge:
 - [http://jonathancreamer.com/what-the-flux/](http://jonathancreamer.com/what-the-flux/)
 - [http://ryanclark.me/getting-started-with-flux/](http://ryanclark.me/getting-started-with-flux/)
 - [http://reactjsnews.com/getting-started-with-flux/](http://reactjsnews.com/getting-started-with-flux/)
+
+
+## [License (MIT)](LICENSE)
